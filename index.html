@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 en Raya Personalizable</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="title-row">
+                <h1>3 en Raya</h1>
+                <button id="home-btn" class="hidden" type="button">Inicio</button>
+                <div id="top-game-actions" class="title-actions-right hidden">
+                    <button id="reset-btn">Reiniciar</button>
+                    <button id="config-btn">Ajustes</button>
+                </div>
+            </div>
+            <p style="color: var(--text-muted); margin-top: -1.5rem; margin-bottom: 2rem;">Edicion Arcade</p>
+        </header>
+
+        <section id="config-panel">
+            <div id="step-mode" class="setup-step">
+                <div class="mode-header">
+                    <h2>Paso 1: Modo</h2>
+                    <p>Elige tu modo de juego.</p>
+                </div>
+
+                <div class="welcome-panel">
+                    <img src="images/welcome.png" alt="Welcome" class="welcome-image">
+                </div>
+
+                <div class="mode-select-stack">
+                    <button id="mode-vs" class="mode-card active" type="button" data-game-mode="vs">
+                        <span class="mode-title">VS</span>
+                        <span class="mode-meta">Partida local por turnos</span>
+                    </button>
+                    <button id="mode-arcade" class="mode-card" type="button" data-game-mode="arcade">
+                        <span class="mode-title">ARCADE</span>
+                        <span class="mode-meta">Nivel 1 vs CPU</span>
+                    </button>
+                </div>
+
+                <div class="setup-actions">
+                    <button id="continue-to-players" type="button">Continuar</button>
+                </div>
+            </div>
+
+            <div id="step-players" class="setup-step hidden">
+                <div class="mode-header">
+                    <h2>Paso 2: Jugadores</h2>
+                    <p>Elige cuantos juegan y la ficha de cada uno.</p>
+                </div>
+
+                <div class="player-setup">
+                    <div class="player-setup-head">
+                        <label>Jugadores</label>
+                        <div class="player-count-carousel">
+                            <button type="button" id="players-prev" class="symbol-nav">◀</button>
+                            <div id="num-players-display" class="player-count-display">2</div>
+                            <button type="button" id="players-next" class="symbol-nav">▶</button>
+                        </div>
+                    </div>
+                    <div id="player-symbols" class="player-symbols"></div>
+                </div>
+
+                <div class="setup-actions">
+                    <button id="back-to-mode" type="button">Atras</button>
+                    <button id="continue-to-boards" type="button">Continuar</button>
+                </div>
+            </div>
+
+            <div id="step-boards" class="setup-step hidden">
+                <div class="mode-header">
+                    <h2>Paso 3: Escenario</h2>
+                    <p>Siempre 3 en raya. Mostramos tableros segun numero de jugadores.</p>
+                </div>
+
+                <div id="board-grid" class="mode-grid board-grid">
+                    <button class="mode-card board-card active" type="button" data-rows="3" data-cols="3" data-target-lines="1" data-min-players="2" data-max-players="2">
+                        <span class="mode-title">CLASICO</span>
+                        <span class="mode-meta">3x3 | 2 jugadores</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="4" data-cols="4" data-target-lines="2" data-min-players="2" data-max-players="4">
+                        <span class="mode-title">ARENA</span>
+                        <span class="mode-meta">4x4 | 2-4 jugadores</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="5" data-cols="5" data-target-lines="3" data-min-players="3" data-max-players="4">
+                        <span class="mode-title">MEGA</span>
+                        <span class="mode-meta">5x5 | 3-4 jugadores</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="5" data-cols="3" data-target-lines="2" data-min-players="2" data-max-players="3" data-device="mobile">
+                        <span class="mode-title">MOBILE DASH</span>
+                        <span class="mode-meta">5x3 | movil 2-3 jugadores</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="7" data-cols="4" data-target-lines="3" data-min-players="2" data-max-players="4" data-device="mobile">
+                        <span class="mode-title">MOBILE RUSH</span>
+                        <span class="mode-meta">7x4 | movil 2-4 jugadores</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="8" data-cols="5" data-target-lines="4" data-min-players="4" data-max-players="4" data-device="mobile">
+                        <span class="mode-title">MOBILE ULTRA</span>
+                        <span class="mode-meta">8x5 | movil 4 jugadores</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="6" data-cols="6" data-target-lines="5" data-min-players="2" data-max-players="4" data-device="desktop">
+                        <span class="mode-title">TITAN</span>
+                        <span class="mode-meta">6x6 | objetivo 5 lineas</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="7" data-cols="7" data-target-lines="7" data-min-players="3" data-max-players="4" data-device="desktop">
+                        <span class="mode-title">COLOSO</span>
+                        <span class="mode-meta">7x7 | objetivo 7 lineas</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="8" data-cols="8" data-target-lines="9" data-min-players="4" data-max-players="4" data-device="desktop">
+                        <span class="mode-title">OVERDRIVE</span>
+                        <span class="mode-meta">8x8 | objetivo 9 lineas</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="9" data-cols="3" data-target-lines="5" data-min-players="2" data-max-players="3" data-device="mobile">
+                        <span class="mode-title">MOBILE SPRINT</span>
+                        <span class="mode-meta">9x3 | movil alargado</span>
+                    </button>
+                    <button class="mode-card board-card" type="button" data-rows="10" data-cols="4" data-target-lines="6" data-min-players="2" data-max-players="4" data-device="mobile">
+                        <span class="mode-title">MOBILE STORM</span>
+                        <span class="mode-meta">10x4 | movil alargado</span>
+                    </button>
+                    <button id="custom-board-card" class="mode-card board-card custom-board-card" type="button" data-custom="true" data-min-players="2" data-max-players="4">
+                        <span class="mode-title">CONFIGURAR UNO</span>
+                        <span class="mode-meta">Crear tablero personalizado</span>
+                    </button>
+                </div>
+
+                <div class="setup-actions">
+                    <button id="back-to-players" type="button">Atras</button>
+                    <button id="start-btn" type="button">Jugar</button>
+                </div>
+            </div>
+
+            <div id="step-custom-board" class="setup-step hidden">
+                <div class="mode-header">
+                    <h2>Paso 4: Personalizado</h2>
+                    <p>Configura tamaño y objetivo. Siempre se juega a 3 en raya.</p>
+                </div>
+
+                <div class="config-grid">
+                    <div class="config-group">
+                        <label for="custom-rows">Filas</label>
+                        <input type="number" id="custom-rows" value="6" min="3" max="20">
+                    </div>
+                    <div class="config-group">
+                        <label for="custom-cols">Columnas</label>
+                        <input type="number" id="custom-cols" value="6" min="3" max="20">
+                    </div>
+                    <div class="config-group">
+                        <label for="custom-target-lines">Objetivo (Lineas)</label>
+                        <input type="number" id="custom-target-lines" value="4" min="1" max="30">
+                    </div>
+                </div>
+
+                <div class="setup-actions">
+                    <button id="back-to-boards" type="button">Atras</button>
+                    <button id="use-custom-board" type="button">Usar y Jugar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="game-area" class="hidden">
+            <div id="arcade-next-screen" class="hidden">
+                <div id="next-screen-title" class="next-label">NEXT OPPONENT</div>
+                <div id="next-screen-subtitle" class="next-subtitle"></div>
+                <div id="next-opponent-avatar-wrap" class="next-avatar-wrap">
+                    <img id="next-opponent-avatar" alt="Siguiente oponente">
+                    <div id="next-opponent-fallback" class="next-avatar-fallback hidden"></div>
+                </div>
+            </div>
+            <div class="arcade-layout">
+                <aside id="left-score-panel" class="score-panel">
+                    <div id="left-score-slot"></div>
+                </aside>
+                <div class="board-stage">
+                    <div id="turn-display">Turno: X</div>
+                    <div class="board-wrapper">
+                        <div id="game-board">
+                            <div id="strike-lines-container"></div>
+                        </div>
+                    </div>
+                </div>
+                <aside id="right-score-panel" class="score-panel">
+                    <div id="right-score-slot"></div>
+                </aside>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal de Fin de Partida -->
+    <div id="game-over-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">¡Victoria!</h2>
+            <p id="modal-subtitle">Jugador X ha ganado la partida</p>
+            <div class="modal-actions">
+                <button id="modal-restart-btn" class="modal-btn primary-btn" type="button">Jugar de nuevo</button>
+                <button id="modal-menu-btn" class="modal-btn secondary-btn" type="button">Volver al menú</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="ai/arcade-ai-utils.js"></script>
+    <script src="ai/personalities/boss-x.js"></script>
+    <script src="ai/personalities/boss-o.js"></script>
+    <script src="ai/personalities/boss-a.js"></script>
+    <script src="ai/personalities/boss-at.js"></script>
+    <script src="ai/personalities/boss-hash.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
