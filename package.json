@@ -1,0 +1,24 @@
+{
+  "name": "3-en-raya",
+  "version": "1.0.0",
+  "description": "Bienvenido a la versión definitiva del 3 en Raya. Este juego permite configurar el tamaño del tablero y las condiciones de victoria para crear partidas únicas y desafiantes.",
+  "main": "script.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hectronic/3-en-raya.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Hectronic/3-en-raya/issues"
+  },
+  "homepage": "https://github.com/Hectronic/3-en-raya#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  }
+}
