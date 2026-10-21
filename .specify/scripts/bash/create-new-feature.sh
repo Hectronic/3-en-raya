@@ -95,20 +95,27 @@ get_highest_from_specs() {
     local specs_dir="$1"
     local highest=0
     
-    if [ -d "$specs_dir" ]; then
-        for dir in "$specs_dir"/*; do
-            [ -d "$dir" ] || continue
-            dirname=$(basename "$dir")
-            # Match sequential prefixes (>=3 digits), but skip timestamp dirs.
-            if echo "$dirname" | grep -Eq '^[0-9]{3,}-' && ! echo "$dirname" | grep -Eq '^[0-9]{8}-[0-9]{6}-'; then
-                number=$(echo "$dirname" | grep -Eo '^[0-9]+')
-                number=$((10#$number))
-                if [ "$number" -gt "$highest" ]; then
-                    highest=$number
-                fi
-            fi
-        done
+    local search_dirs=("$specs_dir")
+    if [ -d "$specs_dir/archive" ]; then
+        search_dirs+=("$specs_dir/archive")
     fi
+
+    for current_dir in "${search_dirs[@]}"; do
+        if [ -d "$current_dir" ]; then
+            for dir in "$current_dir"/*; do
+                [ -d "$dir" ] || continue
+                dirname=$(basename "$dir")
+                # Match sequential prefixes (>=3 digits), but skip timestamp dirs and special folders.
+                if echo "$dirname" | grep -Eq '^[0-9]{3,}-' && ! echo "$dirname" | grep -Eq '^[0-9]{8}-[0-9]{6}-'; then
+                    number=$(echo "$dirname" | grep -Eo '^[0-9]+')
+                    number=$((10#$number))
+                    if [ "$number" -gt "$highest" ]; then
+                        highest=$number
+                    fi
+                fi
+            done
+        fi
+    done
     
     echo "$highest"
 }

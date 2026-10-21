@@ -258,7 +258,7 @@ from pathlib import Path
 root = Path(sys.argv[1]).resolve()
 specs = root / "specs"
 plans = sorted(
-    specs.glob("*/plan.md"),
+    list(specs.glob("*/plan.md")) + list(specs.glob("archive/*/plan.md")),
     key=lambda p: p.stat().st_mtime,
     reverse=True,
 )
